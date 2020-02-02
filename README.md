@@ -1,5 +1,7 @@
 # RoboRepair
 
+![](screenshot.jpg)
+
 My game made for Global Game Jam 2020.
 
 It's about repairing a robot with components.
