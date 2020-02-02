@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/new toon clipped.ogg-74ef83926706612e0b35b9ec191935c2.oggstr"
+
+[deps]
+
+source_file="res://Sound/new toon clipped.ogg"
+dest_files=[ "res://.import/new toon clipped.ogg-74ef83926706612e0b35b9ec191935c2.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

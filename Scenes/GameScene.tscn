@@ -1,0 +1,922 @@
+[gd_scene load_steps=54 format=2]
+
+[ext_resource path="res://Images/Robot game scene 0005.png" type="Texture" id=1]
+[ext_resource path="res://Images/Robot game scene 0003.png" type="Texture" id=2]
+[ext_resource path="res://Images/Robot components Resistor OK.png" type="Texture" id=3]
+[ext_resource path="res://Images/Robot components cpu.png" type="Texture" id=4]
+[ext_resource path="res://Images/Robot components cmos.png" type="Texture" id=5]
+[ext_resource path="res://Images/Robot components Fuse OK.png" type="Texture" id=6]
+[ext_resource path="res://Images/Robot components Regulator select.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/CanvasLayer.gd" type="Script" id=8]
+[ext_resource path="res://Scripts/RobotComponents.gd" type="Script" id=9]
+[ext_resource path="res://Images/Robot game scene component popup 2.png" type="Texture" id=10]
+[ext_resource path="res://Scripts/GameScene.gd" type="Script" id=11]
+[ext_resource path="res://Sound/new toon clipped.ogg" type="AudioStream" id=12]
+[ext_resource path="res://Scripts/ResistorDialog.gd" type="Script" id=13]
+[ext_resource path="res://Scripts/CPUDialog.gd" type="Script" id=14]
+[ext_resource path="res://Scripts/CMOSDialog.gd" type="Script" id=15]
+[ext_resource path="res://Scripts/RegulatorDialog.gd" type="Script" id=16]
+[ext_resource path="res://Scripts/FuseDialog.gd" type="Script" id=17]
+[ext_resource path="res://Images/side panel.png" type="Texture" id=18]
+[ext_resource path="res://Images/bulb-off.png" type="Texture" id=19]
+[ext_resource path="res://Images/button.png" type="Texture" id=20]
+[ext_resource path="res://Images/button-depressed.png" type="Texture" id=21]
+[ext_resource path="res://Images/Robot face confused.png" type="Texture" id=22]
+[ext_resource path="res://Images/Robot face hapy.png" type="Texture" id=23]
+[ext_resource path="res://Images/Robot face off.png" type="Texture" id=24]
+[ext_resource path="res://Sound/crunch.wav" type="AudioStream" id=25]
+[ext_resource path="res://Sound/confused.wav" type="AudioStream" id=26]
+[ext_resource path="res://Sound/power on.wav" type="AudioStream" id=27]
+[ext_resource path="res://Sound/hello.wav" type="AudioStream" id=28]
+
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=2]
+size = 14
+font_data = SubResource( 1 )
+
+[sub_resource type="DynamicFontData" id=3]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=4]
+size = 30
+font_data = SubResource( 3 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 24 ), ExtResource( 22 ), ExtResource( 23 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFontData" id=6]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=7]
+font_data = SubResource( 6 )
+
+[sub_resource type="DynamicFontData" id=8]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=9]
+size = 15
+font_data = SubResource( 8 )
+
+[sub_resource type="DynamicFontData" id=10]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=11]
+size = 15
+font_data = SubResource( 10 )
+
+[sub_resource type="DynamicFontData" id=12]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=13]
+size = 15
+font_data = SubResource( 12 )
+
+[sub_resource type="DynamicFontData" id=14]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=15]
+size = 15
+font_data = SubResource( 14 )
+
+[sub_resource type="DynamicFontData" id=16]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=17]
+size = 10
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 16 )
+
+[sub_resource type="DynamicFontData" id=18]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=19]
+size = 10
+font_data = SubResource( 18 )
+
+[sub_resource type="DynamicFontData" id=20]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=21]
+size = 10
+font_data = SubResource( 20 )
+
+[sub_resource type="DynamicFontData" id=22]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=23]
+size = 20
+font_data = SubResource( 22 )
+
+[sub_resource type="DynamicFontData" id=24]
+font_path = "res://Fonts/Terminat.ttf"
+
+[sub_resource type="DynamicFont" id=25]
+size = 20
+font_data = SubResource( 24 )
+
+[node name="GameScene" type="Node2D"]
+script = ExtResource( 11 )
+
+[node name="SceneImage" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource( 8 )
+
+[node name="Diagnostics" type="Control" parent="CanvasLayer"]
+margin_left = 894.684
+margin_top = 3.1579
+margin_right = 1276.68
+margin_bottom = 722.158
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="DiagnosticsPanel" type="Sprite" parent="CanvasLayer/Diagnostics"]
+position = Vector2( 0, -3.17771 )
+scale = Vector2( 0.917473, 1.00441 )
+texture = ExtResource( 18 )
+centered = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="BulbContainer" type="Node2D" parent="CanvasLayer/Diagnostics"]
+position = Vector2( 56, 105 )
+
+[node name="Bulb1" type="Sprite" parent="CanvasLayer/Diagnostics/BulbContainer"]
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 19 )
+
+[node name="Bulb2" type="Sprite" parent="CanvasLayer/Diagnostics/BulbContainer"]
+position = Vector2( 58.8838, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 19 )
+
+[node name="Bulb3" type="Sprite" parent="CanvasLayer/Diagnostics/BulbContainer"]
+position = Vector2( 116.866, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 19 )
+
+[node name="Bulb4" type="Sprite" parent="CanvasLayer/Diagnostics/BulbContainer"]
+position = Vector2( 173.136, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 19 )
+
+[node name="Bulb5" type="Sprite" parent="CanvasLayer/Diagnostics/BulbContainer"]
+position = Vector2( 228.916, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 19 )
+
+[node name="Bulb6" type="Sprite" parent="CanvasLayer/Diagnostics/BulbContainer"]
+position = Vector2( 285.988, 0 )
+scale = Vector2( 0.1, 0.1 )
+texture = ExtResource( 19 )
+
+[node name="Control" type="Control" parent="CanvasLayer/Diagnostics"]
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Diagnostics/Control"]
+margin_left = 29.0444
+margin_top = 27.8027
+margin_right = 276.044
+margin_bottom = 71.8027
+custom_fonts/mono_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.4, 0.0470588, 0.0470588, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+text = "Diagnostics"
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="PowerLabel" type="RichTextLabel" parent="CanvasLayer/Diagnostics/Control"]
+margin_left = 26.9693
+margin_top = 57.1473
+margin_right = 273.969
+margin_bottom = 101.147
+custom_fonts/mono_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.4, 0.0470588, 0.0470588, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+text = "POWER LEVEL"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ErrorCodeLabel" type="RichTextLabel" parent="CanvasLayer/Diagnostics/Control"]
+margin_left = 30.6702
+margin_top = 150.052
+margin_right = 339.67
+margin_bottom = 194.052
+custom_fonts/mono_font = SubResource( 2 )
+custom_fonts/normal_font = SubResource( 4 )
+custom_colors/default_color = Color( 0.4, 0.0470588, 0.0470588, 1 )
+custom_colors/font_color_selected = Color( 0, 0, 0, 1 )
+text = "Error Code: 00"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PowerButton" type="TextureButton" parent="CanvasLayer/Diagnostics"]
+margin_left = 144.089
+margin_top = 582.755
+margin_right = 464.089
+margin_bottom = 902.755
+rect_scale = Vector2( 0.3, 0.3 )
+texture_normal = ExtResource( 20 )
+texture_pressed = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RobotAnim" type="AnimatedSprite" parent="CanvasLayer/Diagnostics"]
+position = Vector2( 180.887, 386.183 )
+scale = Vector2( 0.64339, 0.64339 )
+frames = SubResource( 5 )
+
+[node name="ComponentSelectorImage" type="Sprite" parent="CanvasLayer"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchor_top = 0.869
+anchor_bottom = 0.869
+margin_left = 1.0
+margin_top = -44.68
+margin_right = 895.0
+margin_bottom = 94.32
+grow_horizontal = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResistorContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+margin_right = 174.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 174, 0 )
+size_flags_horizontal = 0
+
+[node name="ResistorsButton" type="Button" parent="CanvasLayer/HBoxContainer/ResistorContainer"]
+margin_right = 174.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = SubResource( 7 )
+text = "Resistors"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resistor" type="Sprite" parent="CanvasLayer/HBoxContainer/ResistorContainer"]
+position = Vector2( 79, 91 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 3 )
+
+[node name="CPUContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+margin_left = 178.0
+margin_right = 352.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 174, 0 )
+
+[node name="CPUButton" type="Button" parent="CanvasLayer/HBoxContainer/CPUContainer"]
+margin_right = 174.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = SubResource( 9 )
+text = "CPU"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CPU" type="Sprite" parent="CanvasLayer/HBoxContainer/CPUContainer"]
+position = Vector2( 83, 89 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="CMOSContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+margin_left = 356.0
+margin_right = 530.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 174, 0 )
+
+[node name="CMOSButton" type="Button" parent="CanvasLayer/HBoxContainer/CMOSContainer"]
+margin_right = 174.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = SubResource( 11 )
+text = "CMOS"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CMOS" type="Sprite" parent="CanvasLayer/HBoxContainer/CMOSContainer"]
+position = Vector2( 85, 90 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 5 )
+
+[node name="RegulatorContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+margin_left = 534.0
+margin_right = 708.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 174, 0 )
+
+[node name="RegulatorButton" type="Button" parent="CanvasLayer/HBoxContainer/RegulatorContainer"]
+margin_right = 174.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = SubResource( 13 )
+text = "Regulator"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Regulator" type="Sprite" parent="CanvasLayer/HBoxContainer/RegulatorContainer"]
+position = Vector2( 84, 91 )
+scale = Vector2( 0.06, 0.06 )
+texture = ExtResource( 7 )
+
+[node name="FuseContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+margin_left = 712.0
+margin_right = 886.0
+margin_bottom = 139.0
+rect_min_size = Vector2( 174, 0 )
+
+[node name="FuseButton" type="Button" parent="CanvasLayer/HBoxContainer/FuseContainer"]
+margin_right = 174.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 0, 40 )
+custom_fonts/font = SubResource( 15 )
+text = "Fuse"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fuse" type="Sprite" parent="CanvasLayer/HBoxContainer/FuseContainer"]
+position = Vector2( 92, 91 )
+scale = Vector2( 0.13, 0.13 )
+texture = ExtResource( 6 )
+
+[node name="RobotComponents" type="Node2D" parent="CanvasLayer"]
+script = ExtResource( 9 )
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/RobotComponents"]
+margin_left = 183.0
+margin_top = 160.708
+margin_right = 553.0
+margin_bottom = 502.708
+columns = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResistorDialog" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 2.27545
+margin_top = 329.854
+margin_right = 352.275
+margin_bottom = 579.854
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComponentSelectorNinePatch" type="NinePatchRect" parent="CanvasLayer/ResistorDialog"]
+margin_left = -12.0
+margin_top = -11.0
+margin_right = 355.0
+margin_bottom = 250.0
+texture = ExtResource( 10 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 11
+patch_margin_bottom = 9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="10kResistorButton" type="TextureButton" parent="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch"]
+margin_left = 31.0
+margin_top = 14.0
+margin_right = 307.0
+margin_bottom = 132.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/10kResistorButton"]
+margin_left = 53.4913
+margin_top = 31.7073
+margin_right = 112.491
+margin_bottom = 53.7073
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 17 )
+text = "10k ohm"
+scroll_following = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="1kResistorButton2" type="TextureButton" parent="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch"]
+margin_left = 26.0
+margin_top = 67.0
+margin_right = 291.0
+margin_bottom = 185.0
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/1kResistorButton2"]
+margin_left = 64.3624
+margin_top = 27.5262
+margin_right = 123.362
+margin_bottom = 49.5262
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 19 )
+text = "1k ohm"
+scroll_following = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="500ResistorButton3" type="TextureButton" parent="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch"]
+margin_left = 27.1202
+margin_top = 117.306
+margin_right = 476.12
+margin_bottom = 235.306
+rect_scale = Vector2( 0.5, 0.5 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 3 )
+texture_hover = ExtResource( 3 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/500ResistorButton3"]
+margin_left = 54.0
+margin_top = 31.0
+margin_right = 117.0
+margin_bottom = 48.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 21 )
+text = "500 ohm"
+scroll_following = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CPUDialog" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 89.0
+margin_top = 327.0
+margin_right = 439.0
+margin_bottom = 577.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComponentSelectorNinePatch" type="NinePatchRect" parent="CanvasLayer/CPUDialog"]
+margin_left = -8.0
+margin_top = -12.432
+margin_right = 353.0
+margin_bottom = 247.568
+texture = ExtResource( 10 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 11
+patch_margin_bottom = 9
+
+[node name="CPUButton1" type="TextureButton" parent="CanvasLayer/CPUDialog/ComponentSelectorNinePatch"]
+margin_left = 58.3429
+margin_top = 79.5117
+margin_right = 507.343
+margin_bottom = 439.512
+rect_scale = Vector2( 0.25, 0.25 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CPUDialog/ComponentSelectorNinePatch/CPUButton1"]
+margin_left = 104.178
+margin_top = 136.777
+margin_right = 167.178
+margin_bottom = 159.777
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 23 )
+text = "AVR"
+scroll_following = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CPUButton2" type="TextureButton" parent="CanvasLayer/CPUDialog/ComponentSelectorNinePatch"]
+margin_left = 187.071
+margin_top = 81.0629
+margin_right = 636.071
+margin_bottom = 441.063
+rect_scale = Vector2( 0.25, 0.25 )
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 4 )
+texture_focused = ExtResource( 4 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CPUDialog/ComponentSelectorNinePatch/CPUButton2"]
+margin_left = 79.4218
+margin_top = 137.453
+margin_right = 161.422
+margin_bottom = 178.453
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "STM32"
+scroll_following = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CMOSDialog" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 270.485
+margin_top = 326.366
+margin_right = 620.485
+margin_bottom = 576.366
+script = ExtResource( 15 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComponentSelectorNinePatch" type="NinePatchRect" parent="CanvasLayer/CMOSDialog"]
+margin_left = -9.0
+margin_top = -12.0
+margin_right = 355.0
+margin_bottom = 251.0
+texture = ExtResource( 10 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 11
+patch_margin_bottom = 9
+
+[node name="CMOS1" type="TextureButton" parent="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch"]
+margin_left = 38.7197
+margin_top = 32.5109
+margin_right = 487.72
+margin_bottom = 392.511
+rect_scale = Vector2( 0.25, 0.25 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS1"]
+margin_left = 22.0
+margin_top = 79.0
+margin_right = 131.0
+margin_bottom = 139.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "AVR Boot alpha"
+scroll_following = true
+
+[node name="CMOS2" type="TextureButton" parent="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch"]
+margin_left = 191.628
+margin_top = 32.5109
+margin_right = 640.628
+margin_bottom = 392.511
+rect_scale = Vector2( 0.25, 0.25 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS2"]
+margin_left = 31.0
+margin_top = 70.0
+margin_right = 129.0
+margin_bottom = 133.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "STM32 Boot 3"
+scroll_following = true
+
+[node name="CMOS3" type="TextureButton" parent="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch"]
+margin_left = 46.476
+margin_top = 142.206
+margin_right = 495.476
+margin_bottom = 502.206
+rect_scale = Vector2( 0.25, 0.25 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS3"]
+margin_left = 26.0
+margin_top = 74.0
+margin_right = 126.0
+margin_bottom = 136.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "PIC Boot 1"
+scroll_following = true
+
+[node name="CMOS4" type="TextureButton" parent="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch"]
+margin_left = 198.276
+margin_top = 146.638
+margin_right = 647.276
+margin_bottom = 506.638
+rect_scale = Vector2( 0.25, 0.25 )
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+texture_disabled = ExtResource( 5 )
+texture_focused = ExtResource( 5 )
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS4"]
+margin_left = 26.0
+margin_top = 80.0
+margin_right = 126.0
+margin_bottom = 140.0
+rect_scale = Vector2( 3, 3 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "AVR Boot Beta"
+scroll_following = true
+
+[node name="RegulatorDialog" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 446.367
+margin_top = 325.592
+margin_right = 796.367
+margin_bottom = 575.592
+script = ExtResource( 16 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComponentSelectorNinePatch" type="NinePatchRect" parent="CanvasLayer/RegulatorDialog"]
+margin_left = -9.0
+margin_top = -12.0
+margin_right = 355.0
+margin_bottom = 252.0
+texture = ExtResource( 10 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 11
+patch_margin_bottom = 9
+
+[node name="Regulator33" type="TextureButton" parent="CanvasLayer/RegulatorDialog/ComponentSelectorNinePatch"]
+margin_left = 95.0576
+margin_top = 70.3601
+margin_right = 547.058
+margin_bottom = 1288.36
+rect_scale = Vector2( 0.1, 0.1 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/RegulatorDialog/ComponentSelectorNinePatch/Regulator33"]
+margin_left = 138.165
+margin_top = 343.344
+margin_right = 238.165
+margin_bottom = 403.344
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "3.3V"
+scroll_following = true
+
+[node name="Regulator5" type="TextureButton" parent="CanvasLayer/RegulatorDialog/ComponentSelectorNinePatch"]
+margin_left = 248.188
+margin_top = 72.311
+margin_right = 700.188
+margin_bottom = 1290.31
+rect_scale = Vector2( 0.1, 0.1 )
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 7 )
+texture_hover = ExtResource( 7 )
+texture_disabled = ExtResource( 7 )
+texture_focused = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/RegulatorDialog/ComponentSelectorNinePatch/Regulator5"]
+margin_left = 180.043
+margin_top = 335.273
+margin_right = 274.043
+margin_bottom = 395.273
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "5V
+"
+scroll_following = true
+
+[node name="FuseDialog" type="WindowDialog" parent="CanvasLayer"]
+margin_left = 536.0
+margin_top = 328.0
+margin_right = 894.0
+margin_bottom = 576.0
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ComponentSelectorNinePatch" type="NinePatchRect" parent="CanvasLayer/FuseDialog"]
+margin_left = -8.0
+margin_top = -11.0
+margin_right = 359.0
+margin_bottom = 247.0
+texture = ExtResource( 10 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 11
+patch_margin_bottom = 9
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fuse1A" type="TextureButton" parent="CanvasLayer/FuseDialog/ComponentSelectorNinePatch"]
+margin_left = 64.0
+margin_top = 28.0
+margin_right = 516.0
+margin_bottom = 565.0
+rect_scale = Vector2( 0.4, 0.4 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/FuseDialog/ComponentSelectorNinePatch/Fuse1A"]
+margin_left = 46.3103
+margin_top = 30.6898
+margin_right = 81.3103
+margin_bottom = 69.6898
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "1A"
+scroll_following = true
+
+[node name="Fuse5A" type="TextureButton" parent="CanvasLayer/FuseDialog/ComponentSelectorNinePatch"]
+margin_left = 215.505
+margin_top = 29.9528
+margin_right = 667.505
+margin_bottom = 1247.95
+rect_scale = Vector2( 0.4, 0.4 )
+texture_normal = ExtResource( 6 )
+texture_pressed = ExtResource( 6 )
+texture_hover = ExtResource( 6 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/FuseDialog/ComponentSelectorNinePatch/Fuse5A"]
+margin_left = 43.2009
+margin_top = 24.7472
+margin_right = 137.201
+margin_bottom = 84.7472
+rect_scale = Vector2( 5, 5 )
+rect_pivot_offset = Vector2( 5, 0 )
+custom_fonts/normal_font = SubResource( 25 )
+text = "5A"
+scroll_following = true
+
+[node name="RobotSpeechConfused" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource( 26 )
+
+[node name="RobotSpeechHello" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource( 28 )
+
+[node name="RobotCrunch" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource( 25 )
+
+[node name="RobotOn" type="AudioStreamPlayer" parent="CanvasLayer"]
+stream = ExtResource( 27 )
+
+[node name="ResetButton" type="Button" parent="CanvasLayer"]
+margin_left = 11.376
+margin_top = 15.3576
+margin_right = 87.376
+margin_bottom = 39.3576
+text = "Reset Level"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+autoplay = true
+[connection signal="button_down" from="CanvasLayer/Diagnostics/PowerButton" to="." method="_on_PowerButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/Diagnostics/PowerButton" to="CanvasLayer" method="_on_PowerButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/ResistorContainer/ResistorsButton" to="CanvasLayer" method="_on_ResistorsButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/CPUContainer/CPUButton" to="CanvasLayer" method="_on_CPUButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/CMOSContainer/CMOSButton" to="CanvasLayer" method="_on_CMOSButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/RegulatorContainer/RegulatorButton" to="CanvasLayer" method="_on_RegulatorButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/HBoxContainer/FuseContainer/FuseButton" to="CanvasLayer" method="_on_FuseButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/10kResistorButton" to="." method="_on_10kResistorButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/10kResistorButton" to="CanvasLayer/ResistorDialog" method="_on_10kResistorButton_button_down"]
+[connection signal="button_down" from="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/1kResistorButton2" to="." method="_on_1kResistorButton2_button_down"]
+[connection signal="button_down" from="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/1kResistorButton2" to="CanvasLayer/ResistorDialog" method="_on_1kResistorButton2_button_down"]
+[connection signal="button_down" from="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/500ResistorButton3" to="." method="_on_500ResistorButton3_button_down"]
+[connection signal="button_down" from="CanvasLayer/ResistorDialog/ComponentSelectorNinePatch/500ResistorButton3" to="CanvasLayer/ResistorDialog" method="_on_500ResistorButton3_button_down"]
+[connection signal="button_down" from="CanvasLayer/CPUDialog/ComponentSelectorNinePatch/CPUButton1" to="." method="_on_CPUButton1_button_down"]
+[connection signal="button_down" from="CanvasLayer/CPUDialog/ComponentSelectorNinePatch/CPUButton1" to="CanvasLayer/CPUDialog" method="_on_CPUButton1_button_down"]
+[connection signal="button_down" from="CanvasLayer/CPUDialog/ComponentSelectorNinePatch/CPUButton2" to="." method="_on_CPUButton2_button_down"]
+[connection signal="button_down" from="CanvasLayer/CPUDialog/ComponentSelectorNinePatch/CPUButton2" to="CanvasLayer/CPUDialog" method="_on_CPUButton2_button_down"]
+[connection signal="button_down" from="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS1" to="." method="_on_CMOS1_button_down"]
+[connection signal="button_down" from="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS1" to="CanvasLayer/CMOSDialog" method="_on_CMOS1_button_down"]
+[connection signal="button_down" from="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS2" to="." method="_on_CMOS2_button_down"]
+[connection signal="button_down" from="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS2" to="CanvasLayer/CMOSDialog" method="_on_CMOS2_button_down"]
+[connection signal="button_down" from="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS3" to="." method="_on_CMOS3_button_down"]
+[connection signal="button_down" from="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS3" to="CanvasLayer/CMOSDialog" method="_on_CMOS3_button_down"]
+[connection signal="button_down" from="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS4" to="." method="_on_CMOS4_button_down"]
+[connection signal="button_down" from="CanvasLayer/CMOSDialog/ComponentSelectorNinePatch/CMOS4" to="CanvasLayer/CMOSDialog" method="_on_CMOS4_button_down"]
+[connection signal="button_down" from="CanvasLayer/RegulatorDialog/ComponentSelectorNinePatch/Regulator33" to="." method="_on_Regulator33_button_down"]
+[connection signal="button_down" from="CanvasLayer/RegulatorDialog/ComponentSelectorNinePatch/Regulator33" to="CanvasLayer/RegulatorDialog" method="_on_Regulator33_button_down"]
+[connection signal="button_down" from="CanvasLayer/RegulatorDialog/ComponentSelectorNinePatch/Regulator5" to="." method="_on_Regulator5_button_down"]
+[connection signal="button_down" from="CanvasLayer/RegulatorDialog/ComponentSelectorNinePatch/Regulator5" to="CanvasLayer/RegulatorDialog" method="_on_Regulator5_button_down"]
+[connection signal="button_down" from="CanvasLayer/FuseDialog/ComponentSelectorNinePatch/Fuse1A" to="." method="_on_Fuse1A_button_down"]
+[connection signal="button_down" from="CanvasLayer/FuseDialog/ComponentSelectorNinePatch/Fuse1A" to="CanvasLayer/FuseDialog" method="_on_Fuse1A_button_down"]
+[connection signal="button_down" from="CanvasLayer/FuseDialog/ComponentSelectorNinePatch/Fuse5A" to="." method="_on_Fuse5A_button_down"]
+[connection signal="button_down" from="CanvasLayer/FuseDialog/ComponentSelectorNinePatch/Fuse5A" to="CanvasLayer/FuseDialog" method="_on_Fuse5A_button_down"]
+[connection signal="button_down" from="CanvasLayer/ResetButton" to="." method="_on_ResetButton_button_down"]
