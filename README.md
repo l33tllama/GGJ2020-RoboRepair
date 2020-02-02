@@ -1,6 +1,6 @@
 # RoboRepair
 
-![](screenshot.jpg)
+![](https://raw.githubusercontent.com/l33tllama/GGJ2020-RoboRepair/master/screenshot.png)
 
 My game made for Global Game Jam 2020.
 
