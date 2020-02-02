@@ -452,6 +452,7 @@ func populate_components():
 						solution_component_types[cmos_id] = CMOS.AVRAlpha
 					else:
 						solution_component_types[cmos_id] = CMOS.AVRBeta
+					
 				elif cpu_type == CPU.STM32:
 					var type = randi() % 2
 					if type == 0:
@@ -460,7 +461,8 @@ func populate_components():
 					else:
 						component_types[cmos_id] = CMOS.AVRBeta
 						component_nodes[cmos_id].get_node("RichTextLabel").text = "AVR Beta"
-					solution_component_types[cmos_id] = CMOS.STM32
+					solution_component_types[cmos_id] = CMOS.STM32_2
+				print("Solution to cmos: " + str(solution_component_types[cmos_id]))
 					
 			# Set correct CMOS if cpu wrong and cmos not wrong
 			else:
@@ -723,6 +725,8 @@ func clear_components():
 func reset_level():
 	cpu_placed = false
 	cmos_placed = false
+	wrong_cpu = false
+	wrong_cmos = false
 	$CanvasLayer.set_robot_frame(0)
 	$CanvasLayer.set_error_code("00")
 	$CanvasLayer.set_power_level(0)
